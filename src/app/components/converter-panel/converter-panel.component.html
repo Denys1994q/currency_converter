@@ -1,0 +1,54 @@
+<div class="converter">
+  <div *ngIf="loading; else mainContent">
+    <h5 class="loading">Завантаження...</h5>
+  </div>
+  <ng-template #mainContent>
+    <div *ngIf="error; else content">
+      <h5>Перепрошуємо, сервіс недоступний...</h5>
+    </div>
+    <ng-template #content>
+      <h1 class="converter__title">Конвертер валют</h1>
+      <h2 class="converter__subtitle">Курси валют станом на {{ ratesDate }}</h2>
+      <ul class="converter__rates">
+        <li>1 євро - {{ rates["UAH"] | number : "2.1-2" }} грн.</li>
+        <li>1 долар - {{ UAHtoUSD | number : "2.1-2" }} грн.</li>
+      </ul>
+      <div class="converter__item">
+        <input
+          type="number"
+          [(ngModel)]="amountFirstCurrency"
+          (input)="showFirstRes()"
+          class="converter__input"
+        />
+        <select
+          name=""
+          id=""
+          [(ngModel)]="selectFirstCurrency"
+          (change)="showFirstRes()"
+        >
+          <option *ngFor="let rate of ratesTitles" value="{{ rate }}">
+            {{ rate }}
+          </option>
+        </select>
+      </div>
+      <div class="converter__item">
+        <input
+          type="number"
+          [(ngModel)]="amountSecondCurrency"
+          (input)="showRes2()"
+          class="converter__input"
+        />
+        <select
+          name=""
+          id=""
+          [(ngModel)]="selectSecondCurrency"
+          (change)="showSecondRes()"
+        >
+          <option *ngFor="let rate of ratesTitles" value="{{ rate }}">
+            {{ rate }}
+          </option>
+        </select>
+      </div>
+    </ng-template>
+  </ng-template>
+</div>
