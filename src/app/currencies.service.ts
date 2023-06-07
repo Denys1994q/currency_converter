@@ -7,11 +7,15 @@ interface Motd {
   url: string
 }
 
+export interface RateObj {
+  [currency: string]: number,
+}
+
 export interface CurrenciesData {
   base: string,
   date: string,
   motd: Motd,
-  rates: Object,
+  rates: RateObj,
   success: boolean,
 }
 

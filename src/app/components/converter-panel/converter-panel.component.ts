@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrenciesService } from 'src/app/currencies.service';
 import { CurrenciesData } from 'src/app/currencies.service';
+import { RateObj } from 'src/app/currencies.service';
 
 @Component({
   selector: 'app-converter-panel',
@@ -8,8 +9,8 @@ import { CurrenciesData } from 'src/app/currencies.service';
   styleUrls: ['./converter-panel.component.sass']
 })
 export class ConverterPanelComponent implements OnInit {
-  rates: any = {}
   ratesTitles: string[] = []
+  rates: RateObj = {}
   ratesDate: string = ''
   loading: boolean = false
   error: boolean = false
@@ -23,7 +24,7 @@ export class ConverterPanelComponent implements OnInit {
     private CurrenciesService: CurrenciesService
   ) {}
 
-  formatNumber(num: number) {
+  formatNumber(num: number): string {
     return num.toFixed(2)
 }
 
@@ -51,10 +52,6 @@ export class ConverterPanelComponent implements OnInit {
   }
 
   showSecondRes() {
-    this.amountSecondCurrency = +this.formatNumber(this.amountFirstCurrency * this.rates[this.selectSecondCurrency] /  this.rates[this.selectFirstCurrency])
-  }
-
-  showRes2() {
     this.amountFirstCurrency = +this.formatNumber(this.amountSecondCurrency * this.rates[this.selectFirstCurrency] /  this.rates[this.selectSecondCurrency])
   }
 
