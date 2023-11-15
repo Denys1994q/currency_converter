@@ -1,3 +1,7 @@
 <div class="main-container">
-  <app-converter-panel></app-converter-panel>
+  <ul *ngIf="posts && posts.length > 0">
+    <li *ngFor="let post of posts ">{{post.title}}</li>
+  </ul>
+  123
+  <!-- <app-converter-panel></app-converter-panel> -->
 </div>
